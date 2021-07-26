@@ -1,9 +1,9 @@
-import React from 'react'
+import NavBar from "../components/NavBar/NavBar";
 
 export default function Home() {
   return (
     <div>
-      Game Tracker
+      <NavBar />
     </div>
   )
 }
