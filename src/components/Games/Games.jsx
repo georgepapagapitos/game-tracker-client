@@ -1,24 +1,16 @@
-import { useEffect, useState } from "react";
-import axios from 'axios';
+import { useContext, useEffect } from "react";
 import './Games.scss';
-
 import Game from "../Game/Game";
+import { getGames } from "../../context/GameContext/apiCalls";
+import { GameContext } from "../../context/GameContext/GameContext";
 
 export default function Games() {
 
-  const [games, setGames] = useState([]);
+  const { games, dispatch } = useContext(GameContext);
 
   useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        const response = await axios.get(`https://api.rawg.io/api/games?key=385309105bb24ed0bce2c88b2cff8e99&page_size=40`);
-        setGames(response.data.results);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    fetchGames();
-  }, []);
+    getGames(dispatch);
+  }, [dispatch]);
 
   return (
     <div className='games'>
